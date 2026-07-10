@@ -23,16 +23,16 @@ WHERE contribution_amount < 0;
 SELECT 'Invalid sale amount' AS issue, * FROM sales
 WHERE amount <= 0;
 
--- Check 7: double-booked artist (same artist, same start_time, different stage)
-SELECT 'Double-booked artist' AS issue, artist_id, start_time, COUNT(*) AS bookings
+-- Check 7: double-booked artist on the same festival day and start time
+SELECT 'Double-booked artist' AS issue, artist_id, festival_day, start_time, COUNT(*) AS bookings
 FROM performances
-GROUP BY artist_id, start_time
+GROUP BY artist_id, festival_day, start_time
 HAVING COUNT(*) > 1;
 
--- Check 8: double-booked stage (same stage, same start_time, different artist)
-SELECT 'Double-booked stage' AS issue, stage_id, start_time, COUNT(*) AS bookings
+-- Check 8: double-booked stage on the same festival day and start time
+SELECT 'Double-booked stage' AS issue, stage_id, festival_day, start_time, COUNT(*) AS bookings
 FROM performances
-GROUP BY stage_id, start_time
+GROUP BY stage_id, festival_day, start_time
 HAVING COUNT(*) > 1;
 
 -- Check 9: tickets referencing an attendee_id that doesn't exist

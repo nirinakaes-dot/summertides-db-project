@@ -1,11 +1,3 @@
- 
-ALTER TABLE attendees ADD COLUMN phone VARCHAR;
-ALTER TABLE attendees ADD COLUMN age INTEGER;
-ALTER TABLE attendees ADD COLUMN city VARCHAR;
-ALTER TABLE tickets ADD COLUMN price DECIMAL;
-ALTER TABLE tickets ADD COLUMN festival_day DATE;
-ALTER TABLE vendors ADD COLUMN rating DECIMAL;
- 
 -- Attendees (20)
 -- 3 attendees left with NULL phone on purpose, for the
 -- "phone number missing" filtering exercise.
@@ -59,7 +51,7 @@ INSERT INTO stages (name, capacity, location) VALUES
 ('Electronic Dome', 3000, 'East Field'),
 ('Cultural Stage', 2000, 'Village Square');
  
--- Vendors (10) - rating added via patch above
+-- Vendors (10)
 INSERT INTO vendors (name, category, location, rating) VALUES
 ('Coastal Grill', 'Food', 'Main Stage Row', 4.5),
 ('Mama Oliech Eats', 'Food', 'Main Stage Row', 4.8),
@@ -82,8 +74,7 @@ INSERT INTO sponsors (name, contribution_amount) VALUES
 ('Java House', 1000000.00),
 ('Absa Bank', 1800000.00),
 ('Betika', 1200000.00);
-
--- Tickets (40) - price / festival_day added via patch above
+-- Tickets (40)
 -- ticket_type restricted to VIP/General by the CHECK constraint,
 -- but prices are varied within 'General' so Part 7's CASE
 -- exercise (Budget / Standard / VIP) still has 3 real bands.
@@ -129,7 +120,7 @@ INSERT INTO tickets (attendee_id, ticket_type, price, purchase_date, festival_da
 (20, 'General', 2800.00, '2026-07-21', '2026-08-15'),
 (20, 'VIP', 11000.00, '2026-07-21', '2026-08-14');
  
--- Performances (30) - festival_day added via patch above
+-- Performances (30)
 -- Sauti Sol (artist_id 1) deliberately booked 3 times, so
 -- "which artist performs the most" has a clear winner.
 INSERT INTO performances (artist_id, stage_id, start_time, end_time, festival_day) VALUES
@@ -191,4 +182,3 @@ INSERT INTO stage_sponsors (stage_id, sponsor_id) VALUES
 (1, 8),
 (2, 7),
 (4, 4);
- 
