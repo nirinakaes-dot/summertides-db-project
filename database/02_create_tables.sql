@@ -25,6 +25,7 @@ CREATE TABLE performances (
     stage_id INTEGER NOT NULL,
     start_time TIME NOT NULL,
     end_time TIME NOT NULL,
+    festival_day DATE,
     FOREIGN KEY (artist_id) REFERENCES artists(artist_id),
     FOREIGN KEY (stage_id) REFERENCES stages(stage_id)
 );
