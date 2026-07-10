@@ -7,7 +7,7 @@ GROUP BY ar.artist_id, ar.name
 ORDER BY performance_count DESC, artist_name ASC
 LIMIT 1;
 
--- 2. Find the stage hosting the highest number of performances.
+-- 2. Find the stage hosting the highest number of performances..
 SELECT st.name AS stage_name,
        COUNT(p.performance_id) AS performance_count
 FROM stages AS st
